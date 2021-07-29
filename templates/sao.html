@@ -1,0 +1,87 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>内部清理工具</title>
+    <script src="//unpkg.com/vue/dist/vue.js"></script>
+    <script src="//unpkg.com/element-ui@2.15.1/lib/index.js"></script>
+    <link href="favicon.ico" rel="shortcut icon" />
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.4.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @import url("//unpkg.com/element-ui@2.15.1/lib/theme-chalk/index.css");
+        .center {
+  text-align: center;
+}
+    </style>
+</head>
+<body style=" background: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbig5.wallcoo.com%2Fnature%2Fapple_os_x_mountain_lion_wallpapers%2Fwallpapers%2F1920x1080%2Fgalaxy.jpg&refer=http%3A%2F%2Fbig5.wallcoo.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1621219859&t=44d5a160d1caa64b935a39996a8f6920) no-repeat center center fixed; background-size: 100%;">
+
+
+    <div class="modal-dialog" style="margin-top: 10%;">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title text-center" id="myModalLabel">{{ sadsado }}</h4>
+            </div>
+            <div class="modal-body" id = "model-body">
+            <form method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control"placeholder="网站名" name="username" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <div id="app1">
+<template>
+  <el-radio v-model="radio" label="0" name="password" >一键删除数据库</el-radio>
+  <el-radio v-model="radio" label="1" name="password">一键不删除数据库</el-radio>
+</template>
+</div>
+
+                    <input type="text" class="form-control" placeholder="Cookie" name="password" autocomplete="off">
+                </div>
+            <div class="modal-footer">
+                <div id="app">
+                <div class="form-group">
+                    <div v-show="sta">
+                    <input type="submit" class="btn btn-primary form-control" v-on:click="reverseMessage" value="提交"></input>
+                </div>
+                <div class="center" v-show="staa" >
+                    <el-button type="primary" :loading="true">正在获取中</el-button>
+                    </div>
+                </div>
+                <div class="form-group">
+                                    <div class="form-group">
+                    <div v-show="sta">
+                </div>
+                </div>
+            </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+
+</body>
+<script>
+    var app = new Vue({
+  el: '#app',
+  data: {
+      sta: true,
+      staa: false
+  },
+  methods: {
+      reverseMessage: function () {
+          this.sta = false;
+          this.staa = true
+      }
+  }
+})
+    var Main = {
+        data () {
+          return {
+            radio: '0'
+          };
+        }
+      }
+    var Ctor = Vue.extend(Main)
+    new Ctor().$mount('#app1')
+</script>
+</html>
