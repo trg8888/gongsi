@@ -1,0 +1,14 @@
+v_sku,v_name,v_description,v_image,v_url,v_parent_sku,v_date_added,v_status,v_sort_order,v_meta_title,v_meta_keywords,v_meta_description,,,,
+Bags,Bags,,,,,,1,1,Bags,Bags,Bags
+habiliment,habiliment,,,,,,1,2,habiliment,habiliment,habiliment
+shoe,shoe,,,,,,1,3,shoe,shoe,shoe
+jewellery,jewellery,,,,,,1,4,jewellery,jewellery,jewellery
+Skirts,Skirts,,,,habiliment,,1,5,Skirts,Skirts,Skirts
+Denim Shorts,Denim Shorts,,,,habiliment,,1,6,Denim Shorts,Denim Shorts,Denim Shorts
+Slippers,Slippers,,,,shoe,,1,7,Slippers,Slippers,Slippers
+Shorts,Shorts,,,,habiliment,,1,8,Shorts,Shorts,Shorts
+Heels,Heels,,,,shoe,,1,9,Heels,Heels,Heels
+Dresses,Dresses,,,,habiliment,,1,10,Dresses,Dresses,Dresses
+Pendant Necklaces,Pendant Necklaces,,,,jewellery,,1,11,Pendant Necklaces,Pendant Necklaces,Pendant Necklaces
+Handbags,Handbags,,,,Bags,,1,12,Handbags,Handbags,Handbags
+Earrings,Earrings,,,,jewellery,,1,13,Earrings,Earrings,Earrings

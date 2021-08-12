@@ -7,6 +7,7 @@ from lxml import etree
 import pymysql
 import csv
 import threading
+import datetime
 
 
 class Utopia(threading.Thread):
@@ -23,9 +24,10 @@ class Utopia(threading.Thread):
             port=3306,
             password='Tang5230.',
             charset='utf8',
-            db='romwe',
+            db='romwes',
             cursorclass=pymysql.cursors.DictCursor
         )
+
         self.cursor = self.connectr.cursor()
         self.name = ''.join(random.sample(
             ['z', 'y', 'x', 'w', 'v', 'u', 't', 's', 'r', 'q', 'p', 'o', 'n', 'm', 'l', 'k', 'j', 'i', 'h', 'g', 'f',
@@ -49,6 +51,11 @@ class Utopia(threading.Thread):
             f_csvs = csv.writer(files)
             f_csvs.writerow(
                 ['v_name', 'v_type', 'v_sort_order', 'v_value'])
+        self.clothing = None
+        self.jewelry = None
+        self.Bag = None
+        self.shoe = None
+
 
     def generate(self, number, name, min_, max_):
         user_iamgs = name
@@ -57,14 +64,13 @@ class Utopia(threading.Thread):
             '_', ' ')
         sql = 'SELECT * FROM ' + user_iamgs + ' WHERE ID = %s' % number
         data_count = self.cursor.execute(sql)
-        data = self.cursor.fetchall()
+        data = self.cursor.fetchone()
         data_int = number
         while not data:
             sql = 'SELECT * FROM ' + user_iamgs + ' WHERE ID = %s' % str(data_int + 1)
             data_int += 1
             data_count = self.cursor.execute(sql)
-            data = self.cursor.fetchall()
-        data = data[0]
+            data = self.cursor.fetchone()
         size = 'Size#'
         siz = re.findall('(.*?):.*?;', data['size_'])
         for i__ in siz:
@@ -83,10 +89,49 @@ class Utopia(threading.Thread):
                  '', '', '', '', '',
                  '', '', '', ''])
     def categorytable(self):
-        firstlevel_one = 'clothing'
-        firstlevel_two = 'jewelry'
-        firstlevel_three = 'Bag'
-        firstlevel_four = 'Shoes'
+        secondaryclassification_one = self.clothing[0].replace('is', "'s").replace('____', ',').replace('___', '-').replace(
+            '__', ' & ').replace(
+            '_', ' ')
+        secondaryclassification_two = self.clothing[1].replace('is', "'s").replace('____', ',').replace('___',
+                                                                                                                  '-').replace(
+            '__',
+            ' & ').replace(
+            '_', ' ')
+        secondaryclassification_three = self.clothing[2].replace('is', "'s").replace('____', ',').replace('___', '-').replace(
+            '__',
+            ' & ').replace(
+            '_', ' ')
+        secondaryclassification_four = self.clothing[3].replace('is', "'s").replace('____', ',').replace('___', '-').replace(
+            '__',
+            ' & ').replace(
+            '_', ' ')
+        secondaryclassification_fives = self.jewelry[0].replace('is', "'s").replace('____', ',').replace('___',
+                                                                                                     '-').replace('__',
+                                                                                                                  ' & ').replace(
+            '_',
+            ' ')
+        secondaryclassification_six = self.jewelry[1].replace('is', "'s").replace('____', ',').replace('___',
+                                                                                                      '-').replace('__',
+                                                                                                                   ' & ').replace(
+            '_', ' ')
+        secondaryclassification_seven = self.Bag[0].replace('is', "'s").replace('____', ',').replace('___',
+                                                                                                       '-').replace(
+            '__',
+            ' & ').replace(
+            '_', ' ')
+        secondaryclassification_eight = self.shoe[0].replace('is', "'s").replace('____', ',').replace('___',
+                                                                                                         '-').replace(
+            '__',
+            ' & ').replace(
+            '_', ' ')
+        secondaryclassification_nine = self.shoe[1].replace('is', "'s").replace('____', ',').replace('___',
+                                                                                                         '-').replace(
+            '__', ' & ').replace('_', ' ')
+
+        firstlevel_one = random.choice(['clothing','garment','clothes','garment','habiliment','costuming','attire'])
+        firstlevel_two = random.choice(['jewelry', 'ornaments', 'jewellery'])
+        firstlevel_three = random.choice(['Bags', 'Bag', 'packet','bale'])
+        firstlevel_four = random.choice(['shoe', 'shoes'])
         sdas = [[firstlevel_one, firstlevel_one, '', '', '', '', '', '1', '1', firstlevel_one, firstlevel_one,
                  firstlevel_one],
                 [firstlevel_two, firstlevel_two, '', '', '', '', '', '1', '5', firstlevel_two, firstlevel_two,
@@ -95,44 +140,6 @@ class Utopia(threading.Thread):
                  firstlevel_three],
                 [firstlevel_four, firstlevel_four, '', '', '', '', '', '1', '5', firstlevel_four, firstlevel_four,
                  firstlevel_four]]
-        secondaryclassification_one = 'Denim_Jackets__Coats'.replace('is', "'s").replace('____', ',').replace('___', '-').replace(
-            '__', ' & ').replace(
-            '_', ' ')
-        secondaryclassification_two = 'Denim_Shorts'.replace('is', "'s").replace('____', ',').replace('___',
-                                                                                                                  '-').replace(
-            '__',
-            ' & ').replace(
-            '_', ' ')
-        secondaryclassification_three = 'Denim_Skirts'.replace('is', "'s").replace('____', ',').replace('___', '-').replace(
-            '__',
-            ' & ').replace(
-            '_', ' ')
-        secondaryclassification_four = 'Jeans'.replace('is', "'s").replace('____', ',').replace('___', '-').replace(
-            '__',
-            ' & ').replace(
-            '_', ' ')
-        secondaryclassification_fives = 'Necklaces'.replace('is', "'s").replace('____', ',').replace('___',
-                                                                                                     '-').replace('__',
-                                                                                                                  ' & ').replace(
-            '_',
-            ' ')
-        secondaryclassification_six = 'Rings'.replace('is', "'s").replace('____', ',').replace('___',
-                                                                                                      '-').replace('__',
-                                                                                                                   ' & ').replace(
-            '_', ' ')
-        secondaryclassification_seven = 'Shoulder_Bags'.replace('is', "'s").replace('____', ',').replace('___',
-                                                                                                       '-').replace(
-            '__',
-            ' & ').replace(
-            '_', ' ')
-        secondaryclassification_eight = 'Flats'.replace('is', "'s").replace('____', ',').replace('___',
-                                                                                                         '-').replace(
-            '__',
-            ' & ').replace(
-            '_', ' ')
-        secondaryclassification_nine = 'Heeled_Sandals'.replace('is', "'s").replace('____', ',').replace('___',
-                                                                                                         '-').replace(
-            '__', ' & ').replace('_', ' ')
         sdass = [[secondaryclassification_one, secondaryclassification_one, '', '', '', firstlevel_one, '', '1', '5',
                   secondaryclassification_one, secondaryclassification_one, secondaryclassification_one],
                  [secondaryclassification_two, secondaryclassification_two, '', '', '', firstlevel_one, '', '1', '5',
@@ -176,6 +183,15 @@ class Utopia(threading.Thread):
     def information(self,link_nots):
         self.fen()
         self.pymysql()
+        sql_ = """INSERT INTO peizhi(url)
+                                     VALUES ("%s")""" % (self.url)
+        try:
+            self.cursor.execute(sql_)
+            self.connectr.commit()
+            print('写入账户')
+        except Exception as fs:
+            self.connectr.rollback()
+            print('账户已存在')
         link_not = link_nots
         wangzan = re.findall(r'(.*?)/', link_not)
         i = 'https://' + link_not + '/index.php'
@@ -390,8 +406,8 @@ class Utopia(threading.Thread):
                 panduan_one.xpath(
                     '/html/body/div/div/div[2]/form/table/tbody/tr[9]/td[2]/select/option[@value!="default"]/text()')
             if not panduan_new:
-                print('二次都没有找到自动退出')
-                return '未找到请重试 你输入的网站' + link_not
+                print('二次都没有找到自动退出',self.url)
+                return '403'
         panduan_new = panduan_new[0]
 
         #
@@ -582,6 +598,14 @@ class Utopia(threading.Thread):
         # ==========================================================================#
         qinglitupian = self.session.get(url='https://www.' + link_not + '/index.php?action=clearImg')
         qinglishuju = self.session.get(url='https://www.' + link_not + '/index.php?action=clearSql')
+        sql_ = """UPDATE peizhi SET pz = 1 WHERE url = '%s' """ % self.url
+        try:
+            self.cursor.execute(sql_)
+            self.connectr.commit()
+            print('正在写入数据库')
+        except Exception as fs:
+            self.connectr.rollback()
+            print('配置出错')
 
     def fen(self):
         if not self.size:
@@ -613,23 +637,47 @@ class Utopia(threading.Thread):
 
     def run(self):
         list_ = [
-            {'name': 'Denim_Jackets__Coats', 'min_': 22, 'max_': 33},
+            {'name': 'Blouses', 'min_': 22, 'max_': 33},
             {'name': 'Denim_Shorts', 'min_': 22, 'max_': 33},
-            {'name': 'Denim_Skirts', 'min_': 22, 'max_': 33},
-            {'name': 'Jeans', 'min_': 22, 'max_': 33},
-            {'name': 'Necklaces', 'min_': 11, 'max_': 29},
+            {'name': 'Dresses', 'min_': 22, 'max_': 33},
+            {'name': 'Pants', 'min_': 22, 'max_': 33},
+            {'name': 'Shorts', 'min_': 22, 'max_': 33},
+            {'name': 'Skirts', 'min_': 22, 'max_': 33},
+            {'name': 'Tank_Tops__Camis', 'min_': 22, 'max_': 33},
+            {'name': 'T___Shirts', 'min_': 22, 'max_': 33},
+            {'name': 'Women_Tops', 'min_': 22, 'max_': 33},
+            {'name': 'Pendant_Necklaces', 'min_': 11, 'max_': 29},
+            {'name': 'Earrings', 'min_': 11, 'max_': 29},
+            {'name': 'Bracelets', 'min_': 11, 'max_': 29},
             {'name': 'Rings', 'min_': 11, 'max_': 29},
-            {'name': 'Shoulder_Bags', 'min_': 56, 'max_': 74},
+            {'name': 'Backpack', 'min_': 56, 'max_': 74},
+            {'name': 'Wallets', 'min_': 56, 'max_': 74},
+            {'name': 'Handbags', 'min_': 56, 'max_': 74},
+            {'name': 'Sandals', 'min_': 49, 'max_': 66},
+            {'name': 'Slippers', 'min_': 49, 'max_': 66},
             {'name': 'Flats', 'min_': 49, 'max_': 66},
-            {'name': 'Heeled_Sandals', 'min_': 49, 'max_': 66},
+            {'name': 'Heels', 'min_': 49, 'max_': 66},
+            {'name': 'Sneakers__Athletic', 'min_': 49, 'max_': 66},
         ]
+        clothing = random.sample(['Blouses','Denim_Shorts','Dresses','Pants','Shorts','Skirts','Tank_Tops__Camis','T___Shirts','Women_Tops'],4)
+        self.clothing = clothing
+        jewelry = random.sample(['Pendant_Necklaces','Earrings','Bracelets','Rings'],2)
+        self.jewelry = jewelry
+        Bag = random.sample(['Backpack','Wallets','Handbags'],1)
+        self.Bag = Bag
+        shoe = random.sample(['Sandals','Slippers','Flats','Heels','Sneakers__Athletic'],2)
+        self.shoe = shoe
+        clothing.extend(jewelry)
+        clothing.extend(Bag)
+        clothing.extend(shoe)
         alist = random.sample(range(0, 120), 20)
         for i in alist:
-            for item in list_:
-                self.generate(number=i, name=item['name'], min_=item['min_'], max_=item['max_'])
+            for name in clothing:
+                for item in list_:
+                    if item.get('name') == name:
+                        self.generate(number=i, name=item['name'], min_=item['min_'], max_=item['max_'])
         self.categorytable()
         self.information(link_nots=self.url)
-
 
     def install(self, url):
         response = self.session.get(url=url).text
@@ -710,8 +758,18 @@ class Utopia(threading.Thread):
 
 
 
-while True:
-    url = input(':')
+listzt = [
+    "sabciks.com/grzh1738-titan",
+    "pnmscw.com/grzh1721-titan",
+    "tayime.com/grzh1719-titan",
+    "bgarhi.com/grzh1729-titan",
+    "ubajcm.com/grzh1734-titan",
+    "peadjb.com/grzh1750-titan",
+    "tayime.com/grzh1719-titan",
+    "pnmscw.com/grzh1721-titan",
+
+]
+for url in listzt:
     try:
         Utopia(url).start()
     except Exception:

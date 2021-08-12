@@ -1,0 +1,14 @@
+v_sku,v_name,v_description,v_image,v_url,v_parent_sku,v_date_added,v_status,v_sort_order,v_meta_title,v_meta_keywords,v_meta_description,,,,
+ornaments,ornaments,,,,,,1,1,ornaments,ornaments,ornaments
+shoes,shoes,,,,,,1,2,shoes,shoes,shoes
+bale,bale,,,,,,1,3,bale,bale,bale
+garment,garment,,,,,,1,4,garment,garment,garment
+Wallets,Wallets,,,,bale,,1,5,Wallets,Wallets,Wallets
+Flats,Flats,,,,shoes,,1,6,Flats,Flats,Flats
+Pants,Pants,,,,garment,,1,7,Pants,Pants,Pants
+Shorts,Shorts,,,,garment,,1,8,Shorts,Shorts,Shorts
+Earrings,Earrings,,,,ornaments,,1,9,Earrings,Earrings,Earrings
+Blouses,Blouses,,,,garment,,1,10,Blouses,Blouses,Blouses
+Sandals,Sandals,,,,shoes,,1,11,Sandals,Sandals,Sandals
+Tank Tops & Cam's,Tank Tops & Cam's,,,,garment,,1,12,Tank Tops & Cam's,Tank Tops & Cam's,Tank Tops & Cam's
+Rings,Rings,,,,ornaments,,1,13,Rings,Rings,Rings

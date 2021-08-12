@@ -1,0 +1,14 @@
+v_sku,v_name,v_description,v_image,v_url,v_parent_sku,v_date_added,v_status,v_sort_order,v_meta_title,v_meta_keywords,v_meta_description,,,,
+shoes,shoes,,,,,,1,1,shoes,shoes,shoes
+clothes,clothes,,,,,,1,2,clothes,clothes,clothes
+jewellery,jewellery,,,,,,1,3,jewellery,jewellery,jewellery
+Backpack,Backpack,,,,,,1,4,Backpack,Backpack,Backpack
+Pendant Necklaces,Pendant Necklaces,,,,jewellery,,1,5,Pendant Necklaces,Pendant Necklaces,Pendant Necklaces
+Denim Shorts,Denim Shorts,,,,clothes,,1,6,Denim Shorts,Denim Shorts,Denim Shorts
+Backpack,Backpack,,,,Backpack,,1,7,Backpack,Backpack,Backpack
+Sandals,Sandals,,,,shoes,,1,8,Sandals,Sandals,Sandals
+Dresses,Dresses,,,,clothes,,1,9,Dresses,Dresses,Dresses
+Pants,Pants,,,,clothes,,1,10,Pants,Pants,Pants
+Rings,Rings,,,,jewellery,,1,11,Rings,Rings,Rings
+T-Shirts,T-Shirts,,,,clothes,,1,12,T-Shirts,T-Shirts,T-Shirts
+Slippers,Slippers,,,,shoes,,1,13,Slippers,Slippers,Slippers

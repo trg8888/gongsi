@@ -1,0 +1,14 @@
+v_sku,v_name,v_description,v_image,v_url,v_parent_sku,v_date_added,v_status,v_sort_order,v_meta_title,v_meta_keywords,v_meta_description,,,,
+costuming,costuming,,,,,,1,1,costuming,costuming,costuming
+shoes,shoes,,,,,,1,2,shoes,shoes,shoes
+jewellery,jewellery,,,,,,1,3,jewellery,jewellery,jewellery
+bale,bale,,,,,,1,4,bale,bale,bale
+Skirts,Skirts,,,,costuming,,1,5,Skirts,Skirts,Skirts
+Sandals,Sandals,,,,shoes,,1,6,Sandals,Sandals,Sandals
+Slippers,Slippers,,,,shoes,,1,7,Slippers,Slippers,Slippers
+T-Shirts,T-Shirts,,,,costuming,,1,8,T-Shirts,T-Shirts,T-Shirts
+Backpack,Backpack,,,,bale,,1,9,Backpack,Backpack,Backpack
+Bracelets,Bracelets,,,,jewellery,,1,10,Bracelets,Bracelets,Bracelets
+Tank Tops & Cam's,Tank Tops & Cam's,,,,costuming,,1,11,Tank Tops & Cam's,Tank Tops & Cam's,Tank Tops & Cam's
+Rings,Rings,,,,jewellery,,1,12,Rings,Rings,Rings
+Shorts,Shorts,,,,costuming,,1,13,Shorts,Shorts,Shorts

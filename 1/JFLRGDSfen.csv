@@ -1,0 +1,14 @@
+v_sku,v_name,v_description,v_image,v_url,v_parent_sku,v_date_added,v_status,v_sort_order,v_meta_title,v_meta_keywords,v_meta_description,,,,
+jewelry,jewelry,,,,,,1,1,jewelry,jewelry,jewelry
+habiliment,habiliment,,,,,,1,2,habiliment,habiliment,habiliment
+shoe,shoe,,,,,,1,3,shoe,shoe,shoe
+packet,packet,,,,,,1,4,packet,packet,packet
+Women Tops,Women Tops,,,,habiliment,,1,5,Women Tops,Women Tops,Women Tops
+Backpack,Backpack,,,,packet,,1,6,Backpack,Backpack,Backpack
+Tank Tops & Cam's,Tank Tops & Cam's,,,,habiliment,,1,7,Tank Tops & Cam's,Tank Tops & Cam's,Tank Tops & Cam's
+Earrings,Earrings,,,,jewelry,,1,8,Earrings,Earrings,Earrings
+Flats,Flats,,,,shoe,,1,9,Flats,Flats,Flats
+T-Shirts,T-Shirts,,,,habiliment,,1,10,T-Shirts,T-Shirts,T-Shirts
+Heels,Heels,,,,shoe,,1,11,Heels,Heels,Heels
+Pants,Pants,,,,habiliment,,1,12,Pants,Pants,Pants
+Bracelets,Bracelets,,,,jewelry,,1,13,Bracelets,Bracelets,Bracelets

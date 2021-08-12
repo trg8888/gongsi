@@ -1,0 +1,14 @@
+v_sku,v_name,v_description,v_image,v_url,v_parent_sku,v_date_added,v_status,v_sort_order,v_meta_title,v_meta_keywords,v_meta_description,,,,
+shoes,shoes,,,,,,1,1,shoes,shoes,shoes
+clothing,clothing,,,,,,1,2,clothing,clothing,clothing
+packet,packet,,,,,,1,3,packet,packet,packet
+jewelry,jewelry,,,,,,1,4,jewelry,jewelry,jewelry
+Handbags,Handbags,,,,packet,,1,5,Handbags,Handbags,Handbags
+T-Shirts,T-Shirts,,,,clothing,,1,6,T-Shirts,T-Shirts,T-Shirts
+Sandals,Sandals,,,,shoes,,1,7,Sandals,Sandals,Sandals
+Pants,Pants,,,,clothing,,1,8,Pants,Pants,Pants
+Bracelets,Bracelets,,,,jewelry,,1,9,Bracelets,Bracelets,Bracelets
+Skirts,Skirts,,,,clothing,,1,10,Skirts,Skirts,Skirts
+Blouses,Blouses,,,,clothing,,1,11,Blouses,Blouses,Blouses
+Sneakers & Athletic,Sneakers & Athletic,,,,shoes,,1,12,Sneakers & Athletic,Sneakers & Athletic,Sneakers & Athletic
+Pendant Necklaces,Pendant Necklaces,,,,jewelry,,1,13,Pendant Necklaces,Pendant Necklaces,Pendant Necklaces
