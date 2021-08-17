@@ -24,7 +24,7 @@ class Utopia(threading.Thread):
             port=3306,
             password='Tang5230.',
             charset='utf8',
-            db='romwes',
+            db='zafulcom',
             cursorclass=pymysql.cursors.DictCursor
         )
 
@@ -52,56 +52,56 @@ class Utopia(threading.Thread):
             f_csvs.writerow(
                 ['v_name', 'v_type', 'v_sort_order', 'v_value'])
         self.clothing = None
+        self.clothing_ = None
         self.jewelry = None
         self.Bag = None
         self.shoe = None
 
 
-    def generate(self, number, name, min_, max_):
+    def generate(self, name, min_, max_,jia = False):
         user_iamgs = name
-        user_iamg = user_iamgs.replace('is', "'s").replace('____', ',').replace('___', '-').replace('__',
-                                                                                                    ' & ').replace(
-            '_', ' ')
-        sql = 'SELECT * FROM ' + user_iamgs + ' WHERE ID = %s' % number
+        user_iamg = user_iamgs.replace('is', "'s").replace('____', ',').replace('___', '-').replace('__', ' & ').replace('_', ' ')
+        sql = 'select * from %s order by rand() limit %s;' % (name,str(random.randint(21,35)))
         data_count = self.cursor.execute(sql)
-        data = self.cursor.fetchone()
-        data_int = number
-        while not data:
-            sql = 'SELECT * FROM ' + user_iamgs + ' WHERE ID = %s' % str(data_int + 1)
-            data_int += 1
-            data_count = self.cursor.execute(sql)
-            data = self.cursor.fetchone()
-        size = 'Size#'
-        siz = re.findall('(.*?):.*?;', data['size_'])
-        for i__ in siz:
-            self.size.append(i__)
-            size += i__ +':'
-        with open(self.path + '/' + self.name + '.csv', 'a+', newline="", encoding='utf-8')as file:
-            csv_writer = csv.writer(file)
-            self.sku += 1
-            name_new = self.name + r'%04d' % self.sku
-            a = random.uniform(min_, max_)
-            csv_writer.writerow(
-                [name_new, data['user_name'], '', data['user_descriptions'],
-                 'img/' + user_iamgs + '/' + data['user_iamg'], '', size, round(a, 2),
-                 '', '', '', '1', '1', '',
-                 '', user_iamg, '', data['user_name'], data['user_name'], data['user_name'],
-                 '', '', '', '', '',
-                 '', '', '', ''])
+        data_all = self.cursor.fetchall()
+        for data in data_all:
+            size = 'Size#'
+            siz = re.findall('(.*?):.*?;', data['size_'])
+            for i__ in siz:
+                self.size.append(i__)
+                size += i__ +':'
+            with open(self.path + '/' + self.name + '.csv', 'a+', newline="", encoding='utf-8')as file:
+                csv_writer = csv.writer(file)
+                self.sku += 1
+                name_new = self.name + r'%04d' % self.sku
+                a = random.uniform(min_, max_)
+                if jia:
+                    jiage = round(a, 2)
+                    tejia = jiage - (jiage * round(random.uniform(0.1,0.4),2))
+                else:
+                    jiage = ''
+                    tejia = round(a,2)
+                csv_writer.writerow(
+                    [name_new, data['user_name'], '', data['user_descriptions'],
+                     'img/' + user_iamgs + '/' + data['user_iamg'], '', size, tejia,
+                     jiage, '', '', '1', '1', '',
+                     '', user_iamg, '', data['user_name'], data['user_name'], data['user_name'],
+                     '', '', '', '', '',
+                     '', '', '', ''])
     def categorytable(self):
-        secondaryclassification_one = self.clothing[0].replace('is', "'s").replace('____', ',').replace('___', '-').replace(
+        secondaryclassification_one = self.clothing_[0].replace('is', "'s").replace('____', ',').replace('___', '-').replace(
             '__', ' & ').replace(
             '_', ' ')
-        secondaryclassification_two = self.clothing[1].replace('is', "'s").replace('____', ',').replace('___',
+        secondaryclassification_two = self.clothing_[1].replace('is', "'s").replace('____', ',').replace('___',
                                                                                                                   '-').replace(
             '__',
             ' & ').replace(
             '_', ' ')
-        secondaryclassification_three = self.clothing[2].replace('is', "'s").replace('____', ',').replace('___', '-').replace(
+        secondaryclassification_three = self.clothing[0].replace('is', "'s").replace('____', ',').replace('___', '-').replace(
             '__',
             ' & ').replace(
             '_', ' ')
-        secondaryclassification_four = self.clothing[3].replace('is', "'s").replace('____', ',').replace('___', '-').replace(
+        secondaryclassification_four = self.clothing[1].replace('is', "'s").replace('____', ',').replace('___', '-').replace(
             '__',
             ' & ').replace(
             '_', ' ')
@@ -128,24 +128,16 @@ class Utopia(threading.Thread):
                                                                                                          '-').replace(
             '__', ' & ').replace('_', ' ')
 
-        firstlevel_one = random.choice(['clothing','garment','clothes','garment','habiliment','costuming','attire'])
+        firstlevel_one = random.choice(['clothing','garment','clothes','garment','habiliment','costuming','attire','Dresses'])
         firstlevel_two = random.choice(['jewelry', 'ornaments', 'jewellery'])
-        firstlevel_three = random.choice(['Bags', 'Bag', 'packet','bale'])
         firstlevel_four = random.choice(['shoe', 'shoes'])
         sdas = [[firstlevel_one, firstlevel_one, '', '', '', '', '', '1', '1', firstlevel_one, firstlevel_one,
                  firstlevel_one],
                 [firstlevel_two, firstlevel_two, '', '', '', '', '', '1', '5', firstlevel_two, firstlevel_two,
                  firstlevel_two],
-                [firstlevel_three, firstlevel_three, '', '', '', '', '', '1', '5', firstlevel_three, firstlevel_three,
-                 firstlevel_three],
                 [firstlevel_four, firstlevel_four, '', '', '', '', '', '1', '5', firstlevel_four, firstlevel_four,
                  firstlevel_four]]
-        sdass = [[secondaryclassification_one, secondaryclassification_one, '', '', '', firstlevel_one, '', '1', '5',
-                  secondaryclassification_one, secondaryclassification_one, secondaryclassification_one],
-                 [secondaryclassification_two, secondaryclassification_two, '', '', '', firstlevel_one, '', '1', '5',
-                  secondaryclassification_two, secondaryclassification_two,
-                  secondaryclassification_two],
-                 [secondaryclassification_three, secondaryclassification_three, '', '', '', firstlevel_one, '', '1',
+        sdass = [[secondaryclassification_three, secondaryclassification_three, '', '', '', firstlevel_one, '', '1',
                   '5', secondaryclassification_three, secondaryclassification_three,
                   secondaryclassification_three],
                  [secondaryclassification_four, secondaryclassification_four, '', '', '', firstlevel_one, '', '1', '5',
@@ -156,26 +148,35 @@ class Utopia(threading.Thread):
                  [secondaryclassification_six, secondaryclassification_six, '', '', '', firstlevel_two, '', '1', '5',
                   secondaryclassification_six, secondaryclassification_six,
                   secondaryclassification_six],
-                 [secondaryclassification_seven, secondaryclassification_seven, '', '', '', firstlevel_three, '', '1',
-                  '5', secondaryclassification_seven, secondaryclassification_seven,
-                  secondaryclassification_seven],
                  [secondaryclassification_eight, secondaryclassification_eight, '', '', '', firstlevel_four, '', '1',
                   '5',
                   secondaryclassification_eight, secondaryclassification_eight, secondaryclassification_eight],
                  [secondaryclassification_nine, secondaryclassification_nine, '', '', '', firstlevel_four, '', '1',
                   '5',
                   secondaryclassification_nine, secondaryclassification_nine, secondaryclassification_nine]]
-        sli = random.sample(sdas, 4)
-        slis = random.sample(sdass, 9)
+        sli = random.sample(sdas, 3)
+        slis = random.sample(sdass, 6)
         for asdsad, sss in enumerate(sli):
             with open(self.path + '/' + self.name + 'fen.csv', 'a+', newline='', encoding='utf-8')as files:
                 asdsads = asdsad + 1
                 sss[8] = asdsads
                 f_csvs = csv.writer(files)
                 f_csvs.writerow(sss)
-        for asdsad, sss in enumerate(slis):
+        list__ = [[secondaryclassification_one, secondaryclassification_one, '', '', '', '', '', '1', asdsads,
+                  secondaryclassification_one, secondaryclassification_one, secondaryclassification_one],
+                 [secondaryclassification_two, secondaryclassification_two, '', '', '', '', '', '1', asdsads,
+                  secondaryclassification_two, secondaryclassification_two,
+                  secondaryclassification_two],[secondaryclassification_seven, secondaryclassification_seven, '', '', '', '', '', '1',
+                  asdsads, secondaryclassification_seven, secondaryclassification_seven,
+                  secondaryclassification_seven],]
+        for asdsad, sss in enumerate(list__):
             with open(self.path + '/' + self.name + 'fen.csv', 'a+', newline='', encoding='utf-8')as files:
                 asdsads = asdsad + 5
+                f_csvs = csv.writer(files)
+                f_csvs.writerow(sss)
+        for asdsad, sss in enumerate(slis):
+            with open(self.path + '/' + self.name + 'fen.csv', 'a+', newline='', encoding='utf-8')as files:
+                asdsads = asdsad + 8
                 sss[8] = asdsads
                 f_csvs = csv.writer(files)
                 f_csvs.writerow(sss)
@@ -223,7 +224,7 @@ class Utopia(threading.Thread):
         }
         response = self.session.post(url=link, data=data, headers=req_header).text
 
-        sql = 'SELECT * FROM about_us WHERE ID = %s' % random.randint(1,30)
+        sql = 'select * from about_us order by rand() limit 1;'
         data_count = self.cursor.execute(sql)
         data = self.cursor.fetchone()
 
@@ -319,11 +320,11 @@ class Utopia(threading.Thread):
 
         # =======================================================================================
         print('开始配置数据')
-        sql = 'SELECT * FROM Security_and_privacy WHERE ID = %s' % random.randint(1, 24)
+        sql = 'select * from Security_and_privacy order by rand() limit 1;'
 
         data_count = self.cursor.execute(sql)
         data = self.cursor.fetchone()
-        print(data)
+        # print(data)
 
         yingsianquan_link = 'https://' + link_not + '/cms_page.php?action=save'
         yingsianquan_data = {
@@ -341,7 +342,7 @@ class Utopia(threading.Thread):
 
         songhuofanshi_link = 'https://' + link_not + '/cms_page.php?action=save'
 
-        sql = 'SELECT * FROM Shipping_and_returns WHERE ID = %s' % random.randint(1, 21)
+        sql = 'select * from Shipping_and_returns order by rand() limit 1;'
         data_count = self.cursor.execute(sql)
         data = self.cursor.fetchone()
         songhuofanshi_data = {
@@ -373,7 +374,7 @@ class Utopia(threading.Thread):
         }
 
         Faq_link = 'https://' + link_not + '/cms_page.php?action=save'
-        sql = 'SELECT * FROM common_problem WHERE ID = %s' % random.randint(1, 23)
+        sql = 'select * from common_problem order by rand() limit 1;'
         data_count = self.cursor.execute(sql)
         data = self.cursor.fetchone()
         Faq_data = {
@@ -437,8 +438,7 @@ class Utopia(threading.Thread):
 
         jibenshezhi_link = 'https://' + link_not + '/configuration.php?gID=1&action=save'
 
-        sql = 'SELECT * FROM title WHERE ID = %s' % random.randint(1, 30)
-
+        sql = 'select * from title order by rand() limit 1;'
         data_count = self.cursor.execute(sql)
         data = self.cursor.fetchone()
         jibenshezhi_data = {
@@ -487,15 +487,17 @@ class Utopia(threading.Thread):
 
         # -------------------------------------------------------
         liebiao = []
-        for i in range(1, 10):
-            linksss = 'https://www.' + link_not + '/product.php?page=%s' % i
+        for i in random.sample([4,5,6,7,8,9,10,11,12],3):
+            linksss = 'https://www.' + link_not + '/product.php?filter_category_id=%s' % i
             sad = self.session.get(linksss, headers=req_header).text
             sadsadsad = re.findall('(?s)src=".*" /></td>.*?<td>\d{1,3}</td>', sad)
+            liebiao_ = []
             for isss in sadsadsad:
                 asdasdsadaasdsa = re.findall('<td>(\d{1,})</td>', isss)
                 for issss in asdasdsadaasdsa:
-                    liebiao.append(issss)
-        ssss = random.sample(liebiao, k=12)
+                    liebiao_.append(issss)
+            liebiao.extend(random.sample(liebiao_,k=4))
+        ssss = liebiao
         # ----------------------------------------------------
 
         # -------------------------------------------------------------------------------------------------#
@@ -602,7 +604,7 @@ class Utopia(threading.Thread):
         try:
             self.cursor.execute(sql_)
             self.connectr.commit()
-            print('正在写入数据库')
+            print('已经完成')
         except Exception as fs:
             self.connectr.rollback()
             print('配置出错')
@@ -637,19 +639,17 @@ class Utopia(threading.Thread):
 
     def run(self):
         list_ = [
-            {'name': 'Blouses', 'min_': 22, 'max_': 33},
-            {'name': 'Denim_Shorts', 'min_': 22, 'max_': 33},
-            {'name': 'Dresses', 'min_': 22, 'max_': 33},
-            {'name': 'Pants', 'min_': 22, 'max_': 33},
-            {'name': 'Shorts', 'min_': 22, 'max_': 33},
+            {'name': 'Bodycon_Dresses', 'min_': 22, 'max_': 33},
+            {'name': 'Casual_Dresses', 'min_': 22, 'max_': 33},
+            {'name': 'Mini_Dresses', 'min_': 22, 'max_': 33},
+            {'name': 'Print_Dresses', 'min_': 22, 'max_': 33},
+            {'name': 'Short_Sets', 'min_': 22, 'max_': 33},
+            {'name': 'Skirt_Sets', 'min_': 22, 'max_': 33},
             {'name': 'Skirts', 'min_': 22, 'max_': 33},
-            {'name': 'Tank_Tops__Camis', 'min_': 22, 'max_': 33},
-            {'name': 'T___Shirts', 'min_': 22, 'max_': 33},
-            {'name': 'Women_Tops', 'min_': 22, 'max_': 33},
+            {'name': 'Pants', 'min_': 22, 'max_': 33},
             {'name': 'Pendant_Necklaces', 'min_': 11, 'max_': 29},
-            {'name': 'Earrings', 'min_': 11, 'max_': 29},
-            {'name': 'Bracelets', 'min_': 11, 'max_': 29},
-            {'name': 'Rings', 'min_': 11, 'max_': 29},
+            {'name': 'Chokers', 'min_': 11, 'max_': 29},
+            {'name': 'Layer_Sets', 'min_': 11, 'max_': 29},
             {'name': 'Backpack', 'min_': 56, 'max_': 74},
             {'name': 'Wallets', 'min_': 56, 'max_': 74},
             {'name': 'Handbags', 'min_': 56, 'max_': 74},
@@ -659,9 +659,12 @@ class Utopia(threading.Thread):
             {'name': 'Heels', 'min_': 49, 'max_': 66},
             {'name': 'Sneakers__Athletic', 'min_': 49, 'max_': 66},
         ]
-        clothing = random.sample(['Blouses','Denim_Shorts','Dresses','Pants','Shorts','Skirts','Tank_Tops__Camis','T___Shirts','Women_Tops'],4)
+        clothing = random.sample(['Bodycon_Dresses','Casual_Dresses','Mini_Dresses','Print_Dresses'],2)
+        clothing_ = random.sample(['Short_Sets','Skirt_Sets'],1)
+        clothing_.extend(random.sample(['Skirts','Pants'],1))
+        self.clothing_ = clothing_
         self.clothing = clothing
-        jewelry = random.sample(['Pendant_Necklaces','Earrings','Bracelets','Rings'],2)
+        jewelry = random.sample(['Chokers','Layer_Sets'],2)
         self.jewelry = jewelry
         Bag = random.sample(['Backpack','Wallets','Handbags'],1)
         self.Bag = Bag
@@ -670,12 +673,11 @@ class Utopia(threading.Thread):
         clothing.extend(jewelry)
         clothing.extend(Bag)
         clothing.extend(shoe)
-        alist = random.sample(range(0, 120), 20)
-        for i in alist:
-            for name in clothing:
+        clothing.extend(clothing_)
+        for name in clothing:
                 for item in list_:
                     if item.get('name') == name:
-                        self.generate(number=i, name=item['name'], min_=item['min_'], max_=item['max_'])
+                        self.generate(name=item['name'], min_=item['min_'], max_=item['max_'])
         self.categorytable()
         self.information(link_nots=self.url)
 
@@ -759,15 +761,7 @@ class Utopia(threading.Thread):
 
 
 listzt = [
-    "sabciks.com/grzh1738-titan",
-    "pnmscw.com/grzh1721-titan",
-    "tayime.com/grzh1719-titan",
-    "bgarhi.com/grzh1729-titan",
-    "ubajcm.com/grzh1734-titan",
-    "peadjb.com/grzh1750-titan",
-    "tayime.com/grzh1719-titan",
-    "pnmscw.com/grzh1721-titan",
-
+    "rrmhe.com/grzh1754-titan",
 ]
 for url in listzt:
     try:
